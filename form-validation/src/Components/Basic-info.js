@@ -31,7 +31,7 @@ const BasicInfo = () => {
 
                         <input type="text" name="other-job-role" id="other-job-role" class="other-job-role"
                             placeholder="Other job role?">
-        </fieldset>
+            </fieldset>
 
                         <fieldset class="shirts">
                             <legend>T-Shirt Info</legend>
@@ -69,8 +69,8 @@ const BasicInfo = () => {
                                     </select>
                                 </div>
                             </div>
-                        </fieldset>
-      </div>
+                        </fieldset> 
+        </div>
     );
 }
 
