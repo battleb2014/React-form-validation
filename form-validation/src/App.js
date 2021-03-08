@@ -1,11 +1,11 @@
-import Header from './Components/Header';
-//import Form from './Components/Form';
 import './App.css';
+import Header from './Components/Header';
+
 
 function App() {
   return (
     <div className="App">
-      //<Header />
+      <Header />
     </div>
   );
 }
