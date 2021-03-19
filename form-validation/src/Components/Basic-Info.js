@@ -1,12 +1,17 @@
 import React from 'react';
 
 const BasicInfo = (props) => {
+    componentDidMount(){
+        this.nameInput.focus();
+    }
+
     return (
         <fieldset className='basic-info'>
             <legend>Basic Info</legend>
 
             <label for='name'>Name: <span className='asterisk'>*</span>
-                <input type='text' id='name' name='user-name' className='error-border' onChange={props.onNameChange} />
+                <input type='text' id='name' name='user-name' className='error-border'
+                    ref={(input) => { this.nameInput = input }} onChange={props.onNameChange} />
                 <span id='name-hint' className='name-hint hint'>Name field cannot be blank</span>
             </label>
 

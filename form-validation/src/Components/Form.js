@@ -4,6 +4,7 @@ import Shirts from './Shirts';
 import Activities from './Activities';
 import Payments from './Payments';
 
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +12,7 @@ class Form extends Component {
 
         this.state = {
             userName: ' ',
-            email: ' ',
+            email: ' '
         };
     }
 
