@@ -1,9 +1,6 @@
 import React from 'react';
 
 const BasicInfo = (props) => {
-    componentDidMount(){
-        this.nameInput.focus();
-    }
 
     return (
         <fieldset className='basic-info'>
