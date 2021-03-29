@@ -1,36 +1,62 @@
 import React from 'react';
 
-const BasicInfo = (props) => {
+class BasicInfo extends Component {
+    constructor(props) {
+        super(props);
 
-    return (
-        <fieldset className='basic-info'>
-            <legend>Basic Info</legend>
+        this.state = {
+            userName: ' ',
+            email: ' '
+        };
 
-            <label for='name'>Name: <span className='asterisk'>*</span>
-                <input type='text' id='name' name='user-name' className='error-border'
-                    ref={(input) => { this.nameInput = input }} onChange={props.onNameChange} />
-                <span id='name-hint' className='name-hint hint'>Name field cannot be blank</span>
-            </label>
+        this.onNameChange = this.onNameChange.bind(this);
+        this.onEmailChange = this.onEmailChange.bind(this);
+    }
 
-            <label for='email'>Email: <span className='asterisk'>*</span>
-                <input type='email' id='email' name='user-email' className='error-border' />
-                <span id='email-hint' className='email-hint hint'>Name field cannot be blank</span>
-            </label>
+    onNameChange(e) {
+        this.setState({
+            userName: e.target.value
+        });
+        console.log(this.userName);
+    }
 
-            <label for='title'>Job Role</label>
-            <select id='title' name='user-title'>
-                <option hidden>Select Job Role</option>
-                <option value='full-stack js developer'>Full Stack Javascript Developer</option>
-                <option value='front-end developer'>Front End Developer</option>
-                <option value='back-end developer'>Back End Developer</option>
-                <option value='designer'>Designer</option>
-                <option value='student'>Student</option>
-                <option value='other'>Other</option>
-            </select>
+    onEmailChange(e) {
+        this.setState({
+            email: e.target.value
+        })
+        console.log(this.email);
+    }
 
-            <input type='text' name='other-job-role' id='other-job-role' className='other-job-role' placeholder='Other job role?' />
-        </fieldset>
-    );
+    render() {
+        return (
+            <fieldset className='basic-info'>
+                <legend>Basic Info</legend>
+
+                <label for='name'>Name: <span className='asterisk'>*</span>
+                    <input type='text' id='name' name='user-name' className='error-border' />
+                    <span id='name-hint' className='name-hint hint'>Name field cannot be blank</span>
+                </label>
+
+                <label for='email'>Email: <span className='asterisk'>*</span>
+                    <input type='email' id='email' name='user-email' className='error-border' />
+                    <span id='email-hint' className='email-hint hint'>Name field cannot be blank</span>
+                </label>
+
+                <label for='title'>Job Role</label>
+                <select id='title' name='user-title'>
+                    <option hidden>Select Job Role</option>
+                    <option value='full-stack js developer'>Full Stack Javascript Developer</option>
+                    <option value='front-end developer'>Front End Developer</option>
+                    <option value='back-end developer'>Back End Developer</option>
+                    <option value='designer'>Designer</option>
+                    <option value='student'>Student</option>
+                    <option value='other'>Other</option>
+                </select>
+
+                <input type='text' name='other-job-role' id='other-job-role' className='other-job-role' placeholder='Other job role?' />
+            </fieldset>
+        );
+    }
 }
 
 export default BasicInfo;

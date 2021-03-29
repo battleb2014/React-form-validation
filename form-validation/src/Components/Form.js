@@ -8,17 +8,28 @@ import Payments from './Payments';
 class Form extends Component {
     constructor(props) {
         super(props);
-        this.onNameChange = this.onNameChange.bind(this);
 
         this.state = {
             userName: ' ',
             email: ' '
         };
+
+        this.onNameChange = this.onNameChange.bind(this);
+        this.onEmailChange = this.onEmailChange.bind(this);
     }
 
     onNameChange(e) {
-        this.setState({ userName: e.target.value });
+        this.setState({
+            userName: e.target.value
+        });
         console.log(this.userName);
+    }
+
+    onEmailChange(e) {
+        this.setState({
+            email: e.target.value
+        })
+        console.log(this.email);
     }
 
     render() {
