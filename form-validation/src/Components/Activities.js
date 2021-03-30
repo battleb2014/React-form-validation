@@ -30,7 +30,14 @@ const Activities = () => {
                 </label>
 
                 {activityList.map((activity) => (
-                    <Activity name={activity.name} cost={activity.cost} className={activity.className} />
+                    <Activity
+                        name={activity.name}
+                        dayAndTime={activity.dayAndTime}
+                        title={activity.title}
+                        cost={activity.cost}
+                        className={activity.className}
+                        src={activity.src}
+                    />
                 ))}
                 {/*<label>
                     <input type='checkbox' name='js-libs' data-day-and-time='Tuesday 9am-12pm' data-cost='100' />

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Activity = (props) => {
+    const src = props.src;
     return (
         <div>
             <label>
@@ -8,7 +9,7 @@ const Activity = (props) => {
                 <span>{props.title}</span>
                 <span>{props.dayAndTime}</span>
                 <span className='activity-cost'>${props.cost}</span>
-                <img className={props.className} src={props.src} alt='' />
+                <img className={props.className} src={src} alt='' />
             </label>
         </div>
     );
