@@ -41,53 +41,6 @@ const Activities = () => {
                         />
                     </label>
                 ))}
-                {/*<label>
-                    <input type='checkbox' name='js-libs' data-day-and-time='Tuesday 9am-12pm' data-cost='100' />
-                    <span>JavaScript Libraries Workshop</span>
-                    <span>Tuesday 9am-12pm</span>
-                    <span className='activity-cost'>$100</span>
-                    <img className='activity-img react-img' src={react} alt='' />
-                </label>
-
-                <label>
-                    <input type='checkbox' name='node' data-day-and-time='Tuesday 1pm-4pm' data-cost='100' />
-                    <span>Node.js Workshop</span>
-                    <span>Tuesday 1pm-4pm</span>
-                    <span className='activity-cost'>$100</span>
-                    <img className='activity-img node-img' src={node} alt='' />
-                </label>
-
-                <label>
-                    <input type='checkbox' name='js-frameworks' data-day-and-time='Tuesday 9am-12pm' data-cost='100' />
-                    <span>JavaScript Frameworks Workshop</span>
-                    <span>Tuesday 9am-12pm</span>
-                    <span className='activity-cost'>$100</span>
-                    <img className='activity-img angular-img' src={angular} alt='' />
-                </label>
-
-                <label>
-                    <input type='checkbox' name='build-tools' data-day-and-time='Tuesday 1pm-4pm' data-cost='100' />
-                    <span>Build tools Workshop</span>
-                    <span>Tuesday 1pm-4pm</span>
-                    <span className='activity-cost'>$100</span>
-                    <img className='activity-img build-img' src={build} alt='' />
-                </label>
-
-                <label>
-                    <input type='checkbox' name='npm' data-day-and-time='Wednesday 9am-12pm' data-cost='100' />
-                    <span>npm Workshop</span>
-                    <span>Wednesday 9am-12pm</span>
-                    <span className='activity-cost'>$100</span>
-                    <img className='activity-img npm-img' src={npm} alt='' />
-                </label>
-
-                <label>
-                    <input type='checkbox' name='express' data-day-and-time='Wednesday 1pm-4pm' data-cost='100' />
-                    <span>Express Workshop</span>
-                    <span>Wednesday 1pm-4pm</span>
-                    <span className='activity-cost'>$100</span>
-                    <img className='activity-img express-img' src={express} alt='' />
-                </label> */}
             </div>
 
             <p id='activities-cost' className='activities-cost'>Total: $0</p>

@@ -1,13 +1,39 @@
 import React from 'react';
+import PaymentMessage from './PaymentMessage';
 
 const Payments = () => {
+
+    const paymentList = [
+        {
+            title: 'Paypal',
+            message: 'If you selected the PayPal option we\'ll take you to Paypal\'s site to set up your billing information, when you click “Register” below.'
+        },
+        {
+            title: 'Bitcoin',
+            message: 'If you selected the Bitcoin option we\'ll take you to the Coinbase site to set up your billing information. Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.'
+        }
+    ];
+
+    function handleChange() {
+        const creditCard = document.querySelector('.credit-card');
+        if (this.selected.value === 'credit-card') {
+            creditCard.hidden = false;
+        } else if (this.selected.value === 'paypal') {
+            creditCard.hidden = true;
+            <PaymentMessage title='Paypal' message="If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below." />
+        } else if (this.selected.value === 'bitcoin') {
+            creditCard.hidden = true;
+            <PaymentMessage title='Bitcoin' message="If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below." />
+        }
+    }
+
     return (
         <fieldset className='payment-methods'>
             <legend>Payment Info</legend>
 
             <div class='payment-method-box'>
                 <label for='payment'>I'm going to pay with:</label>
-                <select id='payment' name='user-payment'>
+                <select id='payment' name='user-payment' onChange={handleChange()}>
                     <option value='select method' hidden>Select Payment Method</option>
                     <option value='credit-card'>Credit Card</option>
                     <option value='paypal'>PayPal</option>
@@ -71,18 +97,6 @@ const Payments = () => {
                         </label>
                     </div>
                 </div>
-            </div>
-
-            <div id='paypal' className='paypal'>
-                <h3>PayPal</h3>
-                <p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when
-                you click “Register” below.</p>
-            </div>
-
-            <div id='bitcoin' className='bitcoin'>
-                <h3>Bitcoin</h3>
-                <p>If you selected the Bitcoin option we'll take you to the Coinbase site to set up your billing information.
-                Due to the nature of exchanging Bitcoin, all Bitcoin transactions will be final.</p>
             </div>
         </fieldset>
     );
