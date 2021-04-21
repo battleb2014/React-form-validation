@@ -13,6 +13,10 @@ class BasicInfo extends Component {
         this.onEmailChange = this.onEmailChange.bind(this);
     }
 
+    componentDidMount() {
+        this.nameInput.focus();
+    }
+
     onNameChange(e) {
         this.setState({
             userName: e.target.value
@@ -27,13 +31,28 @@ class BasicInfo extends Component {
         console.log(this.email);
     }
 
+    handleOtherJobRole(e) {
+        const other = document.querySelector('.other-job-role');
+        if (e.target.value === 'other') {
+            other.hidden = false;
+        } else if (e.target.value !== 'other') {
+            other.hidden = true;
+        }
+    }
+
     render() {
         return (
             <fieldset className='basic-info'>
                 <legend>Basic Info</legend>
 
                 <label for='name'>Name: <span className='asterisk'>*</span>
-                    <input type='text' id='name' name='user-name' className='error-border' />
+                    <input
+                        ref={(input) => { this.nameInput = input; }}
+                        type='text'
+                        id='name'
+                        name='user-name'
+                        className='error-border'
+                    />
                     <span id='name-hint' className='name-hint hint'>Name field cannot be blank</span>
                 </label>
 
@@ -43,7 +62,7 @@ class BasicInfo extends Component {
                 </label>
 
                 <label for='title'>Job Role</label>
-                <select id='title' name='user-title'>
+                <select id='title' name='user-title' onChange={this.handleOtherJobRole}>
                     <option hidden>Select Job Role</option>
                     <option value='full-stack js developer'>Full Stack Javascript Developer</option>
                     <option value='front-end developer'>Front End Developer</option>
@@ -53,7 +72,7 @@ class BasicInfo extends Component {
                     <option value='other'>Other</option>
                 </select>
 
-                <input type='text' name='other-job-role' id='other-job-role' className='other-job-role' placeholder='Other job role?' />
+                <input type='text' name='other-job-role' id='other-job-role' className='other-job-role' placeholder='Other job role?' hidden='true' />
             </fieldset>
         );
     }

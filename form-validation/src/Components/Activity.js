@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Activity = (props) => {
-    const src = props.src;
     return (
         <div>
             <input type='checkbox' name={props.name} data-day-and-time={props.dayAndTime} data-cost={props.cost} />
