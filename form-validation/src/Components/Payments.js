@@ -17,6 +17,10 @@ class Payments extends Component {
             creditCard.hidden = true;
             paypal.hidden = true;
             bitcoin.hidden = false;
+        } else if (e.target.value === 'credit-card') {
+            paypal.hidden = true;
+            bitcoin.hidden = true;
+            creditCard.hidden = false;
         }
 
     }
