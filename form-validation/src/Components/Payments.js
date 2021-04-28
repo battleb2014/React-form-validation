@@ -4,7 +4,6 @@ class Payments extends Component {
 
     handlePaymentSelect(e) {
 
-        const paymentSelect = document.querySelector('#payment');
         const creditCard = document.querySelector('.credit-card');
         const paypal = document.querySelector('.paypal');
         const bitcoin = document.querySelector('.bitcoin');
@@ -22,15 +21,12 @@ class Payments extends Component {
             bitcoin.hidden = true;
             creditCard.hidden = false;
         }
-
     }
 
     render() {
-
         return (
             <fieldset className='payment-methods'>
                 <legend>Payment Info</legend>
-
                 <div class='payment-method-box'>
                     <label for='payment'>I'm going to pay with:</label>
                     <select id='payment' name='user-payment' onChange={this.handlePaymentSelect}>

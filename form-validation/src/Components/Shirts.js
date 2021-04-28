@@ -24,11 +24,17 @@ class Shirts extends Component {
             colorChildren[4].style.display = 'none';
             colorChildren[5].style.display = 'none';
             colorChildren[6].style.display = 'none';
+            colorChildren[1].style.display = 'block';
+            colorChildren[2].style.display = 'block';
+            colorChildren[3].style.display = 'block';
         } else if (e.target.value === 'heart js') {
             colorChildren[0].style.display = 'none';
             colorChildren[1].style.display = 'none';
             colorChildren[2].style.display = 'none';
             colorChildren[3].style.display = 'none';
+            colorChildren[4].style.display = 'block';
+            colorChildren[5].style.display = 'block';
+            colorChildren[6].style.display = 'block';
         }
     }
 

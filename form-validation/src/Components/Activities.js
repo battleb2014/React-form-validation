@@ -10,30 +10,26 @@ import express from '../img/express.svg';
 
 class Activities extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            total: 0
-        }
-        this.handleTotalCost.bind(this);
-    }
-
-    handleTotalCost = (cost) => {
-        this.setState({ total: { cost } })
-    }
-
     render() {
         const activityList = [
-            { name: 'js-libs', dayAndTime: 'Tuesday 9am-12pm', title: 'JavaScript Libraries Workshop', cost: '100', className: 'activity-img react-img', src: { react } },
-            { name: 'node', dayAndTime: 'Tuesday 1pm-4pm', title: 'Node.js Workshop', cost: '100', className: 'activity-img node-img', src: { node } },
-            { name: 'js-frameworks', dayAndTime: 'Tuesday 9am-12pm', title: 'JavaScript Frameworks Workshop', cost: '100', className: 'activity-img angular-img', src: { angular } },
-            { name: 'build-tools', dayAndTime: 'Tuesday 1pm-4pm', title: 'Build tools Workshop', cost: '100', className: 'activity-img build-img', src: { build } },
-            { name: 'npm', dayAndTime: 'Wednesday 9am-12pm', title: 'npm Workshop', cost: '100', className: 'activity-img npm-img', src: { npm } },
-            { name: 'express', dayAndTime: 'Wednesday 1pm-4pm', title: 'Express Workshop', cost: '100', className: 'activity-img express-img', src: { express } }
+            { name: 'js-libs', dayAndTime: 'Tuesday 9am-12pm', title: 'JavaScript Libraries Workshop', cost: '100', className: 'activity-img react-img', src: react },
+            { name: 'node', dayAndTime: 'Tuesday 1pm-4pm', title: 'Node.js Workshop', cost: '100', className: 'activity-img node-img', src: node },
+            { name: 'js-frameworks', dayAndTime: 'Tuesday 9am-12pm', title: 'JavaScript Frameworks Workshop', cost: '100', className: 'activity-img angular-img', src: angular },
+            { name: 'build-tools', dayAndTime: 'Tuesday 1pm-4pm', title: 'Build tools Workshop', cost: '100', className: 'activity-img build-img', src: build },
+            { name: 'npm', dayAndTime: 'Wednesday 9am-12pm', title: 'npm Workshop', cost: '100', className: 'activity-img npm-img', src: npm },
+            { name: 'express', dayAndTime: 'Wednesday 1pm-4pm', title: 'Express Workshop', cost: '100', className: 'activity-img express-img', src: express }
         ];
 
+        let total = 0;
+
+        function handleTotal() {
+            const cost = document.querySelector('.activity-cost').dataset.cost;
+            total += cost;
+            return total;
+        }
+
         return (
-            <fieldset id='activities' className='activities' onChange={this.handleTotalCost}>
+            <fieldset id='activities' className='activities' onChange={handleTotal}>
                 <legend>Register for Activities</legend>
                 <div id='activities-box' className='activities-box error-border'>
                     <label>
@@ -57,7 +53,7 @@ class Activities extends Component {
                     ))}
                 </div>
 
-                <p id='activities-cost' className='activities-cost'>Total: ${this.state.total}</p>
+                <p id='activities-cost' className='activities-cost'>Total: ${total}</p>
                 <p id='activities-hint' className='activities-hint hint'>Choose at least one activity</p>
             </fieldset >
         );
