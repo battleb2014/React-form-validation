@@ -20,20 +20,12 @@ class Activities extends Component {
             { name: 'express', dayAndTime: 'Wednesday 1pm-4pm', title: 'Express Workshop', cost: '100', className: 'activity-img express-img', src: express }
         ];
 
-        let total = 0;
-
-        function handleTotal() {
-            const cost = document.querySelector('.activity-cost').dataset.cost;
-            total += cost;
-            return total;
-        }
-
         return (
-            <fieldset id='activities' className='activities' onChange={handleTotal}>
+            <fieldset id='activities' className='activities' >
                 <legend>Register for Activities</legend>
                 <div id='activities-box' className='activities-box error-border'>
                     <label>
-                        <input type='checkbox' name='all' data-cost='200' />
+                        <input className='input' type='checkbox' name='all' value='200' />
                         <span>Main Conference</span>
                         <span className='activity-cost'>$200</span>
                         <img className='activity-img js-img' src={js} alt=''></img>
@@ -53,7 +45,7 @@ class Activities extends Component {
                     ))}
                 </div>
 
-                <p id='activities-cost' className='activities-cost'>Total: ${total}</p>
+                <p id='activities-cost' className='activities-cost'>Total: ${this.props.total}</p>
                 <p id='activities-hint' className='activities-hint hint'>Choose at least one activity</p>
             </fieldset >
         );

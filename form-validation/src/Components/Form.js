@@ -10,12 +10,22 @@ class Form extends Component {
         super(props);
 
         this.state = {
+            total: 0,
             userName: ' ',
             email: ' '
         };
 
+        this.handleTotal = this.handleTotal.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
+    }
+
+    handleTotal() {
+
+        this.setState(() => {
+            const cost = document.querySelector('.input').value;
+            return { total: this.state.total + cost }
+        });
     }
 
     onNameChange(e) {
@@ -40,7 +50,7 @@ class Form extends Component {
                     <BasicInfo />
                     <Shirts />
                 </div>
-                <Activities />
+                <Activities total={this.state.total} handleTotal={this.handleTotal} />
                 <Payments />
                 <button type="submit">Register</button>
             </form>
