@@ -44,7 +44,7 @@ class Shirts extends Component {
                 <legend>T-Shirt Info</legend>
                 <div className='shirt-div-box'>
                     <div id='shirt-sizes' className='shirt-sizes'>
-                        <label for='size'>Size: </label>
+                        <label htmlFor='size'>Size: </label>
                         <select id='size' name='user-size'>
                             <option value='small'>S</option>
                             <option value='medium' selected>M</option>
@@ -54,8 +54,8 @@ class Shirts extends Component {
                         </select>
                     </div>
 
-                    <div id='shirt-designs' class='shirt designs'>
-                        <label for='design'>Design:</label>
+                    <div id='shirt-designs' className='shirt designs'>
+                        <label htmlFor='design'>Design:</label>
                         <select id='design' name='user-design' onChange={this.handleThemeColor}>
                             <option hidden>Select Theme</option>
                             <option value='js puns'>Theme - JS Puns</option>
@@ -64,9 +64,9 @@ class Shirts extends Component {
                     </div>
 
                     <div id='shirt-colors' className='shirt-colors'>
-                        <label for='color' className='color-label'>Color:</label>
+                        <label htmlFor='color' className='color-label'>Color:</label>
                         <select id='color' disabled={this.state.value}>
-                            <option selected hidden>Select a design theme above</option>
+                            <option hidden>Select a design theme above</option>
                             <option data-theme="js puns" value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
                             <option data-theme="js puns" value="darkslategrey">Dark Slate Grey (JS Puns shirt only)</option>
                             <option data-theme="js puns" value="gold">Gold (JS Puns shirt only)</option>

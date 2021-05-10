@@ -1,34 +1,9 @@
 import React, { Component } from 'react';
 
 class BasicInfo extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            userName: ' ',
-            email: ' '
-        };
-
-        this.onNameChange = this.onNameChange.bind(this);
-        this.onEmailChange = this.onEmailChange.bind(this);
-    }
 
     componentDidMount() {
         this.nameInput.focus();
-    }
-
-    onNameChange(e) {
-        this.setState({
-            userName: e.target.value
-        });
-        console.log(this.userName);
-    }
-
-    onEmailChange(e) {
-        this.setState({
-            email: e.target.value
-        })
-        console.log(this.email);
     }
 
     handleOtherJobRole(e) {
@@ -45,23 +20,30 @@ class BasicInfo extends Component {
             <fieldset className='basic-info'>
                 <legend>Basic Info</legend>
 
-                <label for='name'>Name: <span className='asterisk'>*</span>
+                <label htmlFor='name'>Name: <span className='asterisk'>*</span>
                     <input
                         ref={(input) => { this.nameInput = input; }}
                         type='text'
                         id='name'
                         name='user-name'
                         className='error-border'
+                        onInput={this.props.nameChange}
                     />
                     <span id='name-hint' className='name-hint hint'>Name field cannot be blank</span>
                 </label>
 
-                <label for='email'>Email: <span className='asterisk'>*</span>
-                    <input type='email' id='email' name='user-email' className='error-border' />
+                <label htmlFor='email'>Email: <span className='asterisk'>*</span>
+                    <input
+                        type='email'
+                        id='email'
+                        name='user-email'
+                        className='error-border'
+                        onInput={this.props.emailChange}
+                    />
                     <span id='email-hint' className='email-hint hint'>Name field cannot be blank</span>
                 </label>
 
-                <label for='title'>Job Role</label>
+                <label htmlFor='title'>Job Role</label>
                 <select id='title' name='user-title' onChange={this.handleOtherJobRole}>
                     <option hidden>Select Job Role</option>
                     <option value='full-stack js developer'>Full Stack Javascript Developer</option>
@@ -72,7 +54,7 @@ class BasicInfo extends Component {
                     <option value='other'>Other</option>
                 </select>
 
-                <input type='text' name='other-job-role' id='other-job-role' className='other-job-role' placeholder='Other job role?' hidden='true' />
+                <input type='text' name='other-job-role' id='other-job-role' className='other-job-role' placeholder='Other job role?' hidden />
             </fieldset>
         );
     }

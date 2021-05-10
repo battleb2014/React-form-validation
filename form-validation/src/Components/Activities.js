@@ -21,11 +21,11 @@ class Activities extends Component {
         ];
 
         return (
-            <fieldset id='activities' className='activities' >
+            <fieldset id='activities' className='activities' onChange={this.props.handleTotal}>
                 <legend>Register for Activities</legend>
                 <div id='activities-box' className='activities-box error-border'>
                     <label>
-                        <input className='input' type='checkbox' name='all' value='200' />
+                        <input className='input' type='checkbox' name='all' value='200' unchecked />
                         <span>Main Conference</span>
                         <span className='activity-cost'>$200</span>
                         <img className='activity-img js-img' src={js} alt=''></img>
