@@ -12,31 +12,56 @@ class Form extends Component {
         this.state = {
             total: 0,
             name: '',
-            nameValidated: false,
+            nameValid: false,
             email: '',
-            emailValidated: false,
+            emailValid: false,
             cardNumber: '',
-            cardNumberValidated: false,
+            cardNumberValid: false,
             zipCode: '',
-            zipCodeValidated: false,
+            zipCodeValid: false,
             cvv: '',
-            cvvValidated: false
+            cvvValid: false
         };
 
         this.handleTotal = this.handleTotal.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
-        this.validateName = this.validateName.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
-        this.validateEmail = this.validateEmail.bind(this);
         this.onCreditCardChange = this.onCreditCardChange(this);
-        this.validateCardNumber = this.validateCardNumber.bind(this);
         this.onZipCodeChange = this.onZipCodeChange.bind(this);
-        this.validateZipCode = this.validateZipCode.bind(this);
         this.onCvvChange = this.onCvvChange.bind(this);
-        this.validateCvv = this.validateCvv.bind(this);
         this.handleRegister = this.handleRegister.bind(this);
-        this.validationCheck = this.validationCheck.bind(this);
+        this.paymentOption = this.paymentOption.bind(this);
+    }
 
+    onNameChange(e) {
+        this.setState({
+            name: e.target.value
+        });
+    }
+
+    onEmailChange(e) {
+        this.setState({
+            email: e.target.value
+        });
+    }
+
+    onCreditCardChange(e) {
+        this.setState({
+            cardNumber: e.value
+        });
+        console.log(this.state.cardNumber);
+    }
+
+    onZipCodeChange(e) {
+        this.setState({
+            zipCode: e.target.value
+        });
+    }
+
+    onCvvChange(e) {
+        this.setState({
+            cvv: e.target.value
+        });
     }
 
     handleTotal(e) {
@@ -63,83 +88,13 @@ class Form extends Component {
         }
     }
 
-    onNameChange(e) {
-        this.setState({
-            name: e.target.value
-        });
-    }
-
-    validateName() {
-        return /\w+/.test(this.state.name);
-    }
-
-    onEmailChange(e) {
-        this.setState({
-            email: e.target.value
-        });
-    }
-
-    validateEmail() {
-        return /^[a-zA-Z0-9]+@[a-zA-Z]+\.com$/.test(this.state.email);
-    }
-
-    onCreditCardChange(e) {
-        this.setState({
-            cardNumber: e.value
-        });
-        console.log(this.state.cardNumber);
-    }
-
-    validateCardNumber() {
-        return /^\d{13,16}$/.test(this.state.cardNumber);
-    }
-
-    onZipCodeChange(e) {
-        this.setState({
-            zipCode: e.target.value
-        });
-    }
-
-    validateZipCode() {
-        return /^\d{5}$/.test(this.state.zipCode);
-    }
-
-    onCvvChange(e) {
-        this.setState({
-            cvv: e.target.value
-        });
-    }
-
-    validateCvv() {
-        return /^\d{3}$/.test(this.state.cvv);
-    }
-
-    validationCheck(isValid, elem) {
-        if (!isValid) {
-            console.log(`fail`);
-            elem.parentElement.className = 'not-valid';
-            elem.parentElement.lastElementChild.style.display = 'inline';
-        } else {
-            console.log(`pass`);
-            elem.parentElement.className = 'valid';
-            elem.parentElement.lastElementChild.style.display = 'none';
-        }
-    }
-
-    handleRegister(e) {
-        const applicantName = document.querySelector('#name');
-        const email = document.querySelector('#email');
+    paymentOption(e) {
         const activityList = document.querySelector('#activities');
         const paymentMethod = document.querySelector('#payment');
         const creditCardOption = paymentMethod.querySelector('option[value = "credit-card"]');
         const creditCardInput = document.querySelector('#cc-num');
         const zipInput = document.querySelector('#zip');
         const cvvInput = document.querySelector('#cvv');
-
-        e.preventDefault();
-
-        this.validationCheck(this.validateName, applicantName);
-        this.validationCheck(this.validateEmail, email);
 
         if (creditCardOption.selected === true) {
             this.validationCheck(this.validateCardNumber, creditCardInput);
@@ -158,6 +113,30 @@ class Form extends Component {
             activityList.classList.remove('valid');
             activityList.lastElementChild.style.display = "inline";
         }
+    }
+
+    validationCheck(isValid, elem) {
+        if (!isValid) {
+            console.log(`fail`);
+            elem.parentElement.className = 'not-valid';
+            elem.parentElement.lastElementChild.style.display = 'inline';
+        } else {
+            console.log(`pass`);
+            elem.parentElement.className = 'valid';
+            elem.parentElement.lastElementChild.style.display = 'none';
+        }
+    }
+
+    handleRegister(e) {
+        const applicantName = document.querySelector('#name');
+        const email = document.querySelector('#email');
+
+        e.preventDefault();
+
+        this.validationCheck(this.validateName, applicantName);
+        this.validationCheck(this.validateEmail, email);
+
+        this.paymentOption();
     }
 
     render() {
