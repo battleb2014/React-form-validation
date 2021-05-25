@@ -10,6 +10,7 @@ class Form extends Component {
         super(props);
 
         this.state = {
+            nmbuerOfActivities: 0,
             total: 0,
             name: '',
             nameValid: false,
@@ -25,12 +26,17 @@ class Form extends Component {
 
         this.handleTotal = this.handleTotal.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
+        this.validateName = this.validateName.bind(this);
         this.onEmailChange = this.onEmailChange.bind(this);
+        this.validateEmail = this.validateEmail.bind(this);
         this.onCreditCardChange = this.onCreditCardChange(this);
+        this.validateCardNumber = this.validateCardNumber(this);
         this.onZipCodeChange = this.onZipCodeChange.bind(this);
+        this.validateZipCode = this.validateZipCode.bind(this);
         this.onCvvChange = this.onCvvChange.bind(this);
+        this.validateCvv = this.validateCvv.bind(this);
         this.handleRegister = this.handleRegister.bind(this);
-        this.paymentOption = this.paymentOption.bind(this);
+        this.validate = this.validate.bind(this);
     }
 
     onNameChange(e) {
@@ -39,17 +45,50 @@ class Form extends Component {
         });
     }
 
+    validateName() {
+        const nameCheck = /[a-zA-Z]+/.test(this.state.name);
+        if (this.state.name !== '') {
+            if (nameCheck === true) {
+                this.setState({
+                    nameValid: true
+                });
+            }
+        }
+    }
+
     onEmailChange(e) {
         this.setState({
             email: e.target.value
         });
+    }
+    //Break these up
+    validateEmail() {
+        const testEmail = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/.test(this.state.email);
+        if (this.state.email !== '') {
+            if (testEmail) {
+                this.setState({
+                    emailValid: true
+                });
+            }
+        }
     }
 
     onCreditCardChange(e) {
         this.setState({
             cardNumber: e.value
         });
-        console.log(this.state.cardNumber);
+    }
+
+    validateCardNumber() {
+        const creditCardValue = parseInt(this.state.cardNumber);
+        const testCreditCard = /^\d{13,16}$/.test(creditCardValue);
+        if (this.state.cardNumber !== '') {
+            if (testCreditCard) {
+                this.setState({
+                    cardNumberValid: true
+                });
+            }
+        }
     }
 
     onZipCodeChange(e) {
@@ -58,13 +97,38 @@ class Form extends Component {
         });
     }
 
+    validateZipCode() {
+        const zipValue = parseInt(this.state.zipCode);
+        const testZip = /^\d{5}$/.test(zipValue);
+        if (this.state.zipCode !== '') {
+            if (testZip) {
+                this.setState({
+                    zipCodeValid: true
+                });
+            }
+        }
+    }
+
     onCvvChange(e) {
         this.setState({
             cvv: e.target.value
         });
     }
 
+    validateCvv() {
+        const cvvValue = parseInt(this.state.cvv);
+        const testCvv = /^\d{3}$/.test(cvvValue);
+        if (this.state.zipCode !== '') {
+            if (testCvv) {
+                this.setState({
+                    cvvValue: true
+                });
+            }
+        }
+    }
+
     handleTotal(e) {
+
         if (e.target.checked) {
             if (e.target.value === '200') {
                 this.setState({
@@ -88,55 +152,55 @@ class Form extends Component {
         }
     }
 
-    paymentOption(e) {
-        const activityList = document.querySelector('#activities');
-        const paymentMethod = document.querySelector('#payment');
-        const creditCardOption = paymentMethod.querySelector('option[value = "credit-card"]');
-        const creditCardInput = document.querySelector('#cc-num');
-        const zipInput = document.querySelector('#zip');
-        const cvvInput = document.querySelector('#cvv');
+    validate() {
+        const nameHint = document.querySelector('#name-hint');
+        const emailHint = document.querySelector('#email-hint');
+        const activityHint = document.querySelector('#activities-hint');
+        const creditCardHint = document.querySelector('#cc-hint');
+        const zipHint = document.querySelector('#zip-hint');
+        const cvvHint = document.querySelector('#cvv-hint');
 
-        if (creditCardOption.selected === true) {
-            this.validationCheck(this.validateCardNumber, creditCardInput);
-            this.validationCheck(this.validateZipCode, zipInput);
-            this.validationCheck(this.validateCvv, cvvInput);
-        }
-
-        if (this.validateActivities) {
-            activityList.classList.remove('not-valid');
-            activityList.classList.add('valid');
-            activityList.lastElementChild.style.display = "none";
-        }
-        else {
-            e.preventDefault();
-            activityList.classList.add('not-valid');
-            activityList.classList.remove('valid');
-            activityList.lastElementChild.style.display = "inline";
-        }
-    }
-
-    validationCheck(isValid, elem) {
-        if (!isValid) {
-            console.log(`fail`);
-            elem.parentElement.className = 'not-valid';
-            elem.parentElement.lastElementChild.style.display = 'inline';
+        if (this.state.validateName) {
+            nameHint.className = 'valid';
         } else {
-            console.log(`pass`);
-            elem.parentElement.className = 'valid';
-            elem.parentElement.lastElementChild.style.display = 'none';
+            nameHint.className = 'not-valid';
+        }
+
+        if (this.state.validateEmail) {
+            emailHint.className = 'valid';
+        } else {
+            emailHint.className = 'not-valid';
+        }
+
+        if (this.state.validateActivities) {
+            activityHint.className = 'valid';
+        } else {
+            activityHint.className = 'not-valid';
+        }
+
+        if (this.state.validateCardNumber) {
+            creditCardHint.className = 'valid';
+        } else {
+            creditCardHint.className = 'not-valid';
+        }
+
+        if (this.validateZipCode) {
+            zipHint.className = 'valid';
+        } else {
+            zipHint.className = 'not-valid';
+        }
+
+        if (this.state.validateCvv) {
+            cvvHint.className = 'valid';
+        } else {
+            cvvHint.className = 'not-valid';
         }
     }
 
     handleRegister(e) {
-        const applicantName = document.querySelector('#name');
-        const email = document.querySelector('#email');
-
         e.preventDefault();
 
-        this.validationCheck(this.validateName, applicantName);
-        this.validationCheck(this.validateEmail, email);
-
-        this.paymentOption();
+        this.validate();
     }
 
     render() {
